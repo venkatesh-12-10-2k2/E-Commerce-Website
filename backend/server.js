@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv").config();
 
-const serverless = require('serverless-http');
 
 //internal imports
 const connectDB = require("../config/db");
@@ -25,14 +24,12 @@ app.get("/", (req, res) => {
 	res.send("from local host");
 });
 
-app.use("/.netlify/functions/server/user", userRoute);
-app.use("/.netlify/functions/server/products", newProduct);
-app.use("/.netlify/functions/server/payment", paymentRoute);
+app.use("/user", userRoute);
+app.use("/products", newProduct);
+app.use("/payment", paymentRoute);
 
 // listen to server
 app.listen(PORT, () => {
 	console.log("Server is running at : ", PORT);
 });
 
-
-module.exports.handler = serverless(app);
