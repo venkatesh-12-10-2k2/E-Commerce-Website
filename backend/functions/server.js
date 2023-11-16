@@ -11,16 +11,10 @@ const userRoute = require("../routes/UserRoutes");
 const newProduct = require("../routes/ProductRoutes");
 const paymentRoute = require("../routes/PaymentRoutes");
 
-const corsOptions = {
-	origin: '*',
-	credentials: true,            //access-control-allow-credentials:true
-	optionSuccessStatus: 200,
-}
-
 connectDB();
 
 const app = express();
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 
 //port
